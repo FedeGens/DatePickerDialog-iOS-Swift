@@ -26,6 +26,7 @@ open class DatePickerDialog: UIView {
     private var defaultDate: Date?
     private var datePickerMode: UIDatePicker.Mode?
     private var callback: DatePickerCallback?
+    private var minuteInterval: Int = 1
     var showCancelButton: Bool = false
     var locale: Locale?
 
@@ -38,7 +39,8 @@ open class DatePickerDialog: UIView {
                 buttonColor: UIColor = UIColor.blue,
                 font: UIFont = .boldSystemFont(ofSize: 15),
                 locale: Locale? = nil,
-                showCancelButton: Bool = true) {
+                showCancelButton: Bool = true,
+                minuteInterval: Int = 1) {
         let size = UIScreen.main.bounds.size
         super.init(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         self.textColor = textColor
@@ -46,6 +48,7 @@ open class DatePickerDialog: UIView {
         self.font = font
         self.showCancelButton = showCancelButton
         self.locale = locale
+        self.minuteInterval = minuteInterval
         setupView()
     }
 
@@ -238,6 +241,7 @@ open class DatePickerDialog: UIView {
         datePicker.autoresizingMask = .flexibleRightMargin
         datePicker.frame.size.width = 300
         datePicker.frame.size.height = 216
+        datePicker.minuteInterval = self.minuteInterval
         return datePicker
     }
 
